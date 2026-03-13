@@ -73,3 +73,5 @@ data/reports/*.pdf
 data/credentials.json
 *.logging
 *.xlsx
+config/.env.dev
+config/.env
