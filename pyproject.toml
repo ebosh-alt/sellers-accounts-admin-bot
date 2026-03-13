@@ -1,0 +1,74 @@
+[project]
+name = "accounts-admin-bot"
+version = "0.1.0"
+description = "A Telegram bot for managing accounts and administrative tasks."
+authors = [
+    { name = "ebo_shit", email = "isakovn2005@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.12,<4"
+dependencies = [
+    "pytz",
+    "aiogram>=3.17.0",
+    "jinja2>=3.1.5",
+    "pydantic>=2.10.5",
+    "sqlalchemy>=2.0.36",
+    "aiosqlite>=0.20.0",
+    "pydantic-settings (>=2.7.1,<3.0.0)",
+    "fastapi (>=0.115.6)",
+    "pandas (>=2.2.3)",
+    "requests (>=2.32.3)",
+    "Telethon (>=1.38.1)",
+    "uvicorn (>=0.34.0)",
+    "yarl (>=1.18.3)",
+    "asyncpg (>=0.30.0,<0.31.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "loguru (>=0.7.3,<0.8.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "pytest-asyncio (>=0.26.0,<0.27.0)",
+    "pytest-mock (>=3.14.0,<4.0.0)",
+    "greenlet (>=3.2.4,<4.0.0)",
+    "apscheduler (>=3.11.0,<4.0.0)",
+    "ruff (>=0.9.6,<0.10.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "W",   # pycodestyle warnings
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "E501", # line length handled by formatter
+    "B008", # function call in argument default (common in FastAPI/aiogram)
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

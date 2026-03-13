@@ -1,0 +1,29 @@
+services:
+  db_accounts:
+    build: ../db_container
+    container_name: db_accounts
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in environment}
+    ports:
+      - "127.0.0.1:${POSTGRES_EXTERNAL_PORT:-6132}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ../db_container/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+
+  bot_and_fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bot_and_fastapi
+    volumes:
+      - ./data:/data
+
+    restart: unless-stopped
+
+
+volumes:
+  pg_data:
